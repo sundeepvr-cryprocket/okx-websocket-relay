@@ -1,0 +1,11 @@
+# WebSocket and HTTP dependencies
+websockets==12.0
+aiohttp==3.9.1
+gunicorn==20.1.0
+
+# Google Cloud dependencies
+google-cloud-logging==3.5.0
+google-cloud-pubsub==2.19.0
+
+# Optional: for additional functionality
+python-dateutil==2.8.2

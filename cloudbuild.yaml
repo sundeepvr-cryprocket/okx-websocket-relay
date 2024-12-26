@@ -1,0 +1,34 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/okx-websocket-relay', '.']
+
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/okx-websocket-relay']
+
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - 'okx-websocket-relay'
+  - '--image'
+  - 'gcr.io/$PROJECT_ID/okx-websocket-relay'
+  - '--platform'
+  - 'managed'
+  - '--region'
+  - 'us-central1'
+  - '--allow-unauthenticated'
+  - '--max-instances'
+  - '10'
+  - '--memory'
+  - '512Mi'
+  - '--cpu'
+  - '1'
+  - '--set-env-vars'
+  - 'OKX_WSS_URL=wss://ws.okx.com:8443/ws/v5/public,PUBSUB_TOPIC=trading-data-stream'
+
+images:
+- 'gcr.io/$PROJECT_ID/okx-websocket-relay'

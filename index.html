@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OKX Tick Screener</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-fluid tick-screener">
+        <div class="row header-row">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <h1 class="m-0">
+                    <i class="bi bi-graph-up"></i> OKX Tick Screener
+                </h1>
+                <div class="connection-status">
+                    <span id="status-indicator" class="badge">
+                        <i class="bi bi-wifi"></i> 
+                        <span id="connection-text">Disconnected</span>
+                    </span>
+                    <small id="connection-details" class="text-muted d-block"></small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-hover tick-table" id="tick-table">
+                        <thead>
+                            <tr>
+                                <th>Pair</th>
+                                <th>Last Price</th>
+                                <th>24h Change</th>
+                                <th>24h High</th>
+                                <th>24h Low</th>
+                                <th>Volume</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tick-table-body">
+                            <!-- Dynamically populated rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="card log-panel">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="m-0">Event Log</h5>
+                        <button id="clear-log" class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-trash"></i> Clear Log
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="message-container" class="log-messages"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
